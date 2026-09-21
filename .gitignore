@@ -28,3 +28,6 @@ data/
 .DS_Store
 Thumbs.db
 ~$*
+
+# 作品集 / 简历构建素材（含个人联系方式与联系方式来源，不进公开仓库）
+assets/portfolio/
