@@ -1,0 +1,14 @@
+{
+  "source": "Criteo Attribution Modeling for Bidding Dataset",
+  "source_license": "CC BY-NC-SA 4.0（非商用）",
+  "source_file": "criteo_attribution.tsv.gz",
+  "source_sha256": "94ac7a465564349bc7ba008602211d5990a3c53cc133abc0aadef61ea2391a98",
+  "source_rows": 16468027,
+  "malformed_rows": 0,
+  "sample_every": 55,
+  "impression_fixture_rows": 299418,
+  "report_fixture_rows": 36982,
+  "top_campaigns": 50,
+  "time_basis": "relative_day（源数据为距首条曝光的秒数，未伪造日历日期）",
+  "statement": "本文件由 scripts/build_fixture.py 从公开数据集聚合生成，不含任何真实企业投放数据。"
+}

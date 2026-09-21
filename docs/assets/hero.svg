@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="adops-diagnostics">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7f9fc"/>
+      <stop offset="100%" stop-color="#eef3f9"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4C78A8"/>
+      <stop offset="55%" stop-color="#5B8FF9"/>
+      <stop offset="100%" stop-color="#E45756"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="320" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="6" fill="url(#bar)"/>
+
+  <text x="64" y="96" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="42" font-weight="700" fill="#1f2d3d">adops-diagnostics</text>
+  <text x="64" y="136" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#5a6b7f">广告投放数据诊断流水线 · 取数 → 清洗 → 体检 → 指标 → 诊断 → 调仓 → 实验 → 报告</text>
+
+  <g font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="15" fill="#31465c">
+    <rect x="64" y="176" width="240" height="58" rx="10" fill="#ffffff" stroke="#dbe4ee"/>
+    <text x="84" y="200" font-weight="600">诊断由规则产出</text>
+    <text x="84" y="222" font-size="13" fill="#6b7c91">12 条规则 · 同输入同输出</text>
+
+    <rect x="320" y="176" width="240" height="58" rx="10" fill="#ffffff" stroke="#dbe4ee"/>
+    <text x="340" y="200" font-weight="600">表达交给 AI</text>
+    <text x="340" y="222" font-size="13" fill="#6b7c91">数字必须回指证据表</text>
+
+    <rect x="576" y="176" width="240" height="58" rx="10" fill="#ffffff" stroke="#dbe4ee"/>
+    <text x="596" y="200" font-weight="600">口径先加总再相除</text>
+    <text x="596" y="222" font-size="13" fill="#6b7c91">报告/SQL/测试三处一致</text>
+
+    <rect x="832" y="176" width="304" height="58" rx="10" fill="#ffffff" stroke="#dbe4ee"/>
+    <text x="852" y="200" font-weight="600">零密钥可跑</text>
+    <text x="852" y="222" font-size="13" fill="#6b7c91">191 项离线测试 · CI 绿</text>
+  </g>
+
+  <text x="64" y="278" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13" fill="#8a9aab">数据来自 Criteo 公开投放数据集（真实 16,468,027 次曝光抽样）· 绝对水平不代表行业基准 · 代码 MIT</text>
+</svg>

@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adops-diagnostics"
+version = "1.0.0"
+description = "广告投放数据诊断流水线：取数 → 清洗 → 体检 → 指标 → 诊断 → 调仓 → 实验 → 报告"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "adops-diagnostics contributors" }]
+keywords = ["advertising", "adtech", "analytics", "diagnostics", "a-b-testing", "product"]
+dependencies = [
+    "pandas>=1.5",
+    "numpy>=1.23",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+charts = ["matplotlib>=3.6"]
+llm = ["python-dotenv>=1.0"]
+dev = ["pytest>=7.0", "pytest-cov>=4.0"]
+
+[project.scripts]
+adops = "adops.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["adops*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.coverage.run]
+source = ["adops"]
+omit = ["adops/llm/*"]

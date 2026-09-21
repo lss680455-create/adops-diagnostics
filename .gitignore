@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 环境
+.env
+.venv/
+venv/
+
+# 运行产物
+outputs/
+*.log
+
+# 大文件：公开数据集原始文件不进仓库（用 scripts/fetch_public_data.py 下载）
+data/
+!data/.gitkeep
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+~$*

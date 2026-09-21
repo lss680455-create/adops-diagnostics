@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[charts,dev]"
+
+      - name: Run tests (offline, zero API keys)
+        run: python -m pytest -q
+
+      - name: End-to-end pipeline on the bundled fixture
+        run: |
+          python -m adops run --source sample --out outputs/ci
+          test -f outputs/ci/report.md
+          test -f outputs/ci/diagnose/findings.json
+          test -f outputs/ci/metrics/kpi.json
+
+      - name: Guard - narrative must not contain unbound numbers
+        run: python scripts/check_narrative.py outputs/ci/narrative.json
+
+      - name: Guard - report must keep the data-boundary notice
+        run: grep -q "数据边界与口径说明" outputs/ci/report.md
+
+      - name: Upload report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-py${{ matrix.python-version }}
+          path: outputs/ci/
+          if-no-files-found: ignore

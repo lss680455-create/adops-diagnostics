@@ -1,0 +1,63 @@
+# adops-diagnostics 默认配置
+# 所有阈值集中在此，代码里没有魔法数字；改阈值改这里。
+# 环境变量可覆盖 run / llm 两节（见 adops/config.py）。
+
+run:
+  account: "demo 投放账户"
+  source: sample              # sample（仓库自带夹具）/ csv（自己的导出）/ criteo（公开数据集全量）
+  data_file: examples/sample_data/criteo_impression_sample.csv.gz
+  layout: auto                # auto / impression（曝光级日志）/ aggregated（聚合报表）
+  out_dir: outputs
+  top_n: 10                   # 报告中展示的计划条数
+  min_days: 1
+
+quality:
+  max_missing_rate: 0.05      # 关键字段缺失率上限
+  max_duplicate_rate: 0.01    # 完全重复行比例上限
+  cost_outlier_iqr: 3.0       # 消耗异常上界 = Q3 + 3×IQR
+  zero_cost_alert_rate: 0.30  # 零消耗行占比告警线
+
+diagnose:
+  # 样本量门槛：不达标就不下结论（小样本的比率差是噪声）
+  min_impressions: 1000
+  min_clicks: 30
+  min_conversions: 10
+  # 效率类阈值
+  cpa_multiplier: 1.5         # CPA 高于全局多少倍算低效
+  spend_share_floor: 0.05     # 涉及消耗占比低于此值的问题不进报告主表
+  # 结构类阈值
+  hhi_alert: 0.25
+  top1_share_alert: 0.40
+  no_conversion_spend_share: 0.03
+  # 成本类阈值
+  cpm_low: 0.5
+  cpm_high: 2.0
+  ctr_low: 0.5
+  # 趋势类阈值
+  trend_lookback_days: 7
+  trend_recent_days: 3
+  trend_cpa_rise: 0.30
+  # 归因与显著性
+  attribution_floor: 0.80
+  z_alpha: 0.05
+
+experiment:
+  alpha: 0.05
+  power: 0.80
+  mde_rel: 0.10               # 期望检出的相对提升
+  baseline_metric: ctr        # ctr / cvr / ipv / cpa
+  looks: 1                    # 中途查看次数（>1 启用 O'Brien-Fleming 序贯边界）
+
+charts:
+  dpi: 150
+  lang: zh                    # zh / en（无中文字体时自动降级为 en）
+  width: 9.0
+  height: 4.6
+
+llm:
+  enabled: false              # 置 true 并配置 OPENAI_API_KEY 后启用 AI 叙述（结论不变，仅行文）
+  api_key: ""
+  base_url: https://api.openai.com/v1
+  model: gpt-4o-mini
+  temperature: 0.2
+  max_tokens: 1200
