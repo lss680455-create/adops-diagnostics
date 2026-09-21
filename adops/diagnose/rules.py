@@ -129,7 +129,7 @@ def rule_attribution_gap(ctx: DiagnosisInput) -> Optional[Finding]:
         subject="归因回传链路",
         evidence=[
             f"归因转化 {num(attributed)} / 全部转化 {num(conversions)} = {pct(rate)}",
-            f"门店阈值 {pct(ctx.cfg.attribution_floor)}，当前低于阈值 {pct(ctx.cfg.attribution_floor - rate)}",
+            f"门槛阈值 {pct(ctx.cfg.attribution_floor)}，当前低于阈值 {pct(ctx.cfg.attribution_floor - rate)}",
             f"当前 CPA {money(ctx.global_cpa)}；若按归因口径重算，真实 CPA 会更低",
         ],
         action="核对转化回传埋点、归因窗口与去重规则，先确认是否有点击后延迟转化未计入",
